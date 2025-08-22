@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govt. Co-ed. Secondary School, Teliwara | Futuristic Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'monospace'],
+                    },
+                    colors: {
+                        'cosmic': '#0a0a0f',
+                        'electric-blue': '#00d4ff',
+                        'neon-purple': '#9d4edd',
+                        'neon-cyan': '#00ffff',
+                        'glass': 'rgba(255,255,255,0.1)',
+                        'dark-glass': 'rgba(0,0,0,0.2)',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'particle': 'particle 20s linear infinite',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { textShadow: '0 0 5px #00d4ff, 0 0 10px #00d4ff, 0 0 15px #00d4ff' },
+                            '100%': { textShadow: '0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #00d4ff' },
+                        },
+                        particle: {
+                            '0%': { transform: 'translateY(100vh) translateX(0px)' },
+                            '100%': { transform: 'translateY(-100vh) translateX(100px)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                }
+            }
+        };
+    </script>
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .neon-border {
+            border: 1px solid #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3), inset 0 0 10px rgba(0, 212, 255, 0.1);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: particle 20s linear infinite;
+        }
+        
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(157, 78, 221, 0.3) 0%, transparent 70%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.3) 0%, transparent 70%),
+                radial-gradient(circle at 40% 40%, rgba(0, 255, 255, 0.2) 0%, transparent 70%),
+                linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 100%);
+        }
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .section-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: #00d4ff;
+            text-shadow: 0 0 10px #00d4ff;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                backdrop-filter: blur(20px);
+                background: rgba(10, 10, 15, 0.95);
+            }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Particle Background -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div id="particles-container"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="font-orbitron font-bold text-xl text-electric-blue text-glow">
+                    GSST
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link hover:text-electric-blue transition-colors duration-300">Home</a>
+                    <a href="#about" class="nav-link hover:text-electric-blue transition-colors duration-300">About</a>
+                    <a href="#academics" class="nav-link hover:text-electric-blue transition-colors duration-300">Academics</a>
+                    <a href="#facilities" class="nav-link hover:text-electric-blue transition-colors duration-300">Facilities</a>
+                    <a href="#administration" class="nav-link hover:text-electric-blue transition-colors duration-300">Administration</a>
+                    <a href="#admissions" class="nav-link hover:text-electric-blue transition-colors duration-300">Admissions</a>
+                    <a href="#gallery" class="nav-link hover:text-electric-blue transition-colors duration-300">Gallery</a>
+                    <a href="#contact" class="nav-link hover:text-electric-blue transition-colors duration-300">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden mobile-menu hidden">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#home" class="block nav-link hover:text-electric-blue transition-colors duration-300">Home</a>
+                <a href="#about" class="block nav-link hover:text-electric-blue transition-colors duration-300">About</a>
+                <a href="#academics" class="block nav-link hover:text-electric-blue transition-colors duration-300">Academics</a>
+                <a href="#facilities" class="block nav-link hover:text-electric-blue transition-colors duration-300">Facilities</a>
+                <a href="#administration" class="block nav-link hover:text-electric-blue transition-colors duration-300">Administration</a>
+                <a href="#admissions" class="block nav-link hover:text-electric-blue transition-colors duration-300">Admissions</a>
+                <a href="#gallery" class="block nav-link hover:text-electric-blue transition-colors duration-300">Gallery</a>
+                <a href="#contact" class="block nav-link hover:text-electric-blue transition-colors duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen hero-bg flex items-center justify-center relative">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="animate-fade-in">
+                <h1 class="font-orbitron text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-glow animate-glow">
+                    <span class="text-electric-blue">GOVT. CO-ED.</span><br>
+                    <span class="text-white">SECONDARY SCHOOL</span><br>
+                    <span class="text-neon-purple text-2xl md:text-4xl">TELIWARA</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-8 text-gray-300 font-light">
+                    Shaping Future Leaders with Knowledge & Values
+                </p>
+                <div class="glass-effect neon-border rounded-lg p-4 mb-8 inline-block">
+                    <p class="text-neon-cyan font-medium">Est. 1966 | CBSE Affiliated | Classes 6-10</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#about" class="glass-effect neon-border rounded-full px-8 py-3 hover-glow transition-all duration-300 font-medium">
+                        Explore Our Legacy
+                    </a>
+                    <a href="#admissions" class="bg-electric-blue text-cosmic rounded-full px-8 py-3 hover-glow transition-all duration-300 font-medium">
+                        Admissions Open
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3D Floating Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="animate-float absolute top-20 left-10 w-20 h-20 glass-effect rounded-full opacity-50"></div>
+            <div class="animate-float absolute top-40 right-20 w-16 h-16 glass-effect rounded-full opacity-40" style="animation-delay: 2s;"></div>
+            <div class="animate-float absolute bottom-32 left-20 w-12 h-12 glass-effect rounded-full opacity-30" style="animation-delay: 4s;"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-electric-blue text-glow">About Our School</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-electric-blue to-neon-purple mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <h3 class="font-orbitron text-2xl font-semibold mb-6 text-neon-cyan">Our Heritage</h3>
+                    <div class="space-y-4 text-gray-300">
+                        <p>Established in <span class="text-electric-blue font-semibold">1966</span> and first opened on <span class="text-electric-blue font-semibold">April 1, 1991</span>, our school has been a beacon of quality education in Shahdara, Delhi for over five decades.</p>
+                        <p>As a proud CBSE affiliated institution (Affiliation No. <span class="text-neon-cyan">2752106</span>), we provide comprehensive secondary education from classes 6th to 10th in a co-educational environment.</p>
+                        <p>Located in the heart of Teliwara, near Durga Mandir, we serve the East Zone-01 of Shahdara district, nurturing young minds with modern pedagogical approaches.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Modern school building exterior with glass facade and contemporary architecture -->
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Modern school building exterior" 
+                         class="rounded-xl shadow-lg w-full h-48 object-cover glass-effect hover-glow transition-all duration-300" />
+                    
+                    <!-- Students using tablets and modern technology in a bright classroom -->
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Students using modern technology in classroom" 
+                         class="rounded-xl shadow-lg w-full h-48 object-cover glass-effect hover-glow transition-all duration-300" />
+                         
+                    <!-- School library with students reading and studying -->
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Modern school library with students" 
+                         class="rounded-xl shadow-lg w-full h-48 object-cover glass-effect hover-glow transition-all duration-300" />
+                         
+                    <!-- Computer lab with students working on modern equipment -->
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Computer lab with modern equipment" 
+                         class="rounded-xl shadow-lg w-full h-48 object-cover glass-effect hover-glow transition-all duration-300" />
+                </div>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                <div class="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
+                    <div class="font-orbitron text-3xl font-bold text-electric-blue mb-2">57+</div>
+                    <div class="text-gray-300">Years of Excellence</div>
+                </div>
+                <div class="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
+                    <div class="font-orbitron text-3xl font-bold text-neon-purple mb-2">1000+</div>
+                    <div class="text-gray-300">Students Served</div>
+                </div>
+                <div class="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
+                    <div class="font-orbitron text-3xl font-bold text-neon-cyan mb-2">5</div>
+                    <div class="text-gray-300">Grade Levels</div>
+                </div>
+                <div class="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
+                    <div class="font-orbitron text-3xl font-bold text-electric-blue mb-2">100%</div>
+                    <div class="text-gray-300">CBSE Curriculum</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section id="academics" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-neon-purple text-glow">Academic Excellence</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neon-purple to-neon-cyan mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Classes 6-8 -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-graduation-cap text-4xl text-electric-blue mb-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-neon-cyan">Classes VI - VIII</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><i class="fas fa-check-circle text-electric-blue mr-2"></i>Foundation Sciences</li>
+                        <li><i class="fas fa-check-circle text-electric-blue mr-2"></i>Mathematics</li>
+                        <li><i class="fas fa-check-circle text-electric-blue mr-2"></i>English & Hindi</li>
+                        <li><i class="fas fa-check-circle text-electric-blue mr-2"></i>Social Studies</li>
+                        <li><i class="fas fa-check-circle text-electric-blue mr-2"></i>Computer Science</li>
+                        <li><i class="fas fa-check-circle text-electric-blue mr-2"></i>Art & Craft</li>
+                    </ul>
+                </div>
+                
+                <!-- Classes 9-10 -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-trophy text-4xl text-neon-purple mb-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-neon-cyan">Classes IX - X</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><i class="fas fa-check-circle text-neon-purple mr-2"></i>Physics, Chemistry, Biology</li>
+                        <li><i class="fas fa-check-circle text-neon-purple mr-2"></i>Advanced Mathematics</li>
+                        <li><i class="fas fa-check-circle text-neon-purple mr-2"></i>English Literature</li>
+                        <li><i class="fas fa-check-circle text-neon-purple mr-2"></i>Hindi Literature</li>
+                        <li><i class="fas fa-check-circle text-neon-purple mr-2"></i>Social Science</li>
+                        <li><i class="fas fa-check-circle text-neon-purple mr-2"></i>Information Technology</li>
+                    </ul>
+                </div>
+                
+                <!-- CBSE Curriculum -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300 md:col-span-2 lg:col-span-1">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-certificate text-4xl text-neon-cyan mb-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-neon-cyan">CBSE Standards</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><i class="fas fa-star text-neon-cyan mr-2"></i>CCE Assessment</li>
+                        <li><i class="fas fa-star text-neon-cyan mr-2"></i>Skill Development</li>
+                        <li><i class="fas fa-star text-neon-cyan mr-2"></i>Value Education</li>
+                        <li><i class="fas fa-star text-neon-cyan mr-2"></i>Life Skills Training</li>
+                        <li><i class="fas fa-star text-neon-cyan mr-2"></i>Board Exam Preparation</li>
+                        <li><i class="fas fa-star text-neon-cyan mr-2"></i>Career Guidance</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Special Programs -->
+            <div class="mt-16">
+                <h3 class="font-orbitron text-2xl font-semibold text-center mb-8 text-electric-blue">Special Programs</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-microscope text-3xl text-electric-blue mb-4"></i>
+                        <h4 class="font-semibold mb-2 text-neon-cyan">Science Labs</h4>
+                        <p class="text-gray-300 text-sm">Hands-on learning in well-equipped laboratories</p>
+                    </div>
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-language text-3xl text-neon-purple mb-4"></i>
+                        <h4 class="font-semibold mb-2 text-neon-cyan">Language Development</h4>
+                        <p class="text-gray-300 text-sm">Enhanced English and Hindi communication skills</p>
+                    </div>
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-calculator text-3xl text-neon-cyan mb-4"></i>
+                        <h4 class="font-semibold mb-2 text-neon-cyan">Mathematics Excellence</h4>
+                        <p class="text-gray-300 text-sm">Advanced problem-solving and analytical thinking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-neon-cyan text-glow">World-Class Facilities</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neon-cyan to-electric-blue mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Smart Classrooms -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-chalkboard-teacher text-4xl text-electric-blue mr-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-white">Smart Classrooms</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Interactive digital boards, multimedia projectors, and modern teaching aids for enhanced learning experiences.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Interactive Whiteboards</li>
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Audio-Visual Systems</li>
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>High-Speed Internet</li>
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Digital Content Library</li>
+                    </ul>
+                </div>
+                
+                <!-- Library -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-book-open text-4xl text-neon-purple mr-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-white">Digital Library</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Extensive collection of books, digital resources, and quiet study spaces for academic excellence.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li><i class="fas fa-check text-neon-purple mr-2"></i>5000+ Books Collection</li>
+                        <li><i class="fas fa-check text-neon-purple mr-2"></i>Digital Resources</li>
+                        <li><i class="fas fa-check text-neon-purple mr-2"></i>Reading Rooms</li>
+                        <li><i class="fas fa-check text-neon-purple mr-2"></i>Reference Section</li>
+                    </ul>
+                </div>
+                
+                <!-- Computer Lab -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-desktop text-4xl text-neon-cyan mr-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-white">Computer Laboratory</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">State-of-the-art computers with latest software for programming and digital literacy.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li><i class="fas fa-check text-neon-cyan mr-2"></i>30+ Modern Systems</li>
+                        <li><i class="fas fa-check text-neon-cyan mr-2"></i>Programming Software</li>
+                        <li><i class="fas fa-check text-neon-cyan mr-2"></i>Internet Access</li>
+                        <li><i class="fas fa-check text-neon-cyan mr-2"></i>Coding Workshops</li>
+                    </ul>
+                </div>
+                
+                <!-- Sports Ground -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-running text-4xl text-electric-blue mr-4"></i>
+                        <h3 class="font-orbitron text-xl font-semibold text-white">Sports Complex</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">Comprehensive sports facilities promoting physical fitness and team spirit among students.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Basketball Court</li>
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Badminton Courts</li>
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Athletics Track</li>
+                        <li><i class="fas fa-check text-electric-blue mr-2"></i>Indoor Games</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Additional Facilities -->
+            <div class="mt-16">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-flask text-3xl text-electric-blue mb-4"></i>
+                        <h4 class="font-semibold text-white">Science Labs</h4>
+                        <p class="text-gray-300 text-xs mt-2">Physics, Chemistry & Biology</p>
+                    </div>
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-music text-3xl text-neon-purple mb-4"></i>
+                        <h4 class="font-semibold text-white">Music Room</h4>
+                        <p class="text-gray-300 text-xs mt-2">Cultural Activities</p>
+                    </div>
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-utensils text-3xl text-neon-cyan mb-4"></i>
+                        <h4 class="font-semibold text-white">Cafeteria</h4>
+                        <p class="text-gray-300 text-xs mt-2">Nutritious Meals</p>
+                    </div>
+                    <div class="glass-effect neon-border rounded-xl p-6 text-center hover-glow transition-all duration-300">
+                        <i class="fas fa-bus text-3xl text-electric-blue mb-4"></i>
+                        <h4 class="font-semibold text-white">Transport</h4>
+                        <p class="text-gray-300 text-xs mt-2">Safe Commuting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Administration Section -->
+    <section id="administration" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-electric-blue text-glow">Leadership Team</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-electric-blue to-neon-purple mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Principal -->
+                <div class="glass-effect neon-border rounded-2xl p-8 mb-8 hover-glow transition-all duration-300">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                        <div class="w-32 h-32 rounded-full glass-effect neon-border flex items-center justify-center">
+                            <i class="fas fa-user-tie text-5xl text-electric-blue"></i>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="font-orbitron text-2xl font-bold text-neon-cyan mb-2">Ms. Ritu Behal</h3>
+                            <p class="text-electric-blue font-semibold mb-4">Principal (MA, M.Ed.)</p>
+                            <p class="text-gray-300 leading-relaxed">
+                                "Leading with vision and dedication, I am committed to fostering an environment where every student can achieve academic excellence while developing strong moral values. Our school's mission is to prepare students not just for examinations, but for life itself, ensuring they become responsible citizens and future leaders."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- School Information Cards -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Official Details -->
+                    <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                        <h3 class="font-orbitron text-xl font-semibold mb-6 text-neon-purple">Official Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">DoE School ID:</span>
+                                <span class="text-electric-blue font-mono">1001151</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">UDISE Code:</span>
+                                <span class="text-electric-blue font-mono">07040123701</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">CBSE Affiliation:</span>
+                                <span class="text-electric-blue font-mono">2752106</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">District/Zone:</span>
+                                <span class="text-electric-blue">Shahdara, East Zone-01</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Academic Structure -->
+                    <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                        <h3 class="font-orbitron text-xl font-semibold mb-6 text-neon-cyan">Academic Structure</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">Education Type:</span>
+                                <span class="text-neon-cyan">Co-educational</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">Classes Offered:</span>
+                                <span class="text-neon-cyan">6th to 10th</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">School Level:</span>
+                                <span class="text-neon-cyan">Secondary</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">Board Affiliation:</span>
+                                <span class="text-neon-cyan">CBSE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions Section -->
+    <section id="admissions" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-neon-purple text-glow">Join Our Family</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neon-purple to-electric-blue mx-auto"></div>
+                <p class="text-gray-300 mt-4 text-lg">Admissions Open for Academic Session 2024-25</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Admission Process -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <h3 class="font-orbitron text-2xl font-semibold mb-6 text-electric-blue">Admission Process</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-electric-blue text-cosmic flex items-center justify-center font-bold text-sm">1</div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Application Form</h4>
+                                <p class="text-gray-300 text-sm">Download and fill the admission form from the school office or website.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-neon-purple text-cosmic flex items-center justify-center font-bold text-sm">2</div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Document Submission</h4>
+                                <p class="text-gray-300 text-sm">Submit required documents along with the completed application form.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-neon-cyan text-cosmic flex items-center justify-center font-bold text-sm">3</div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Assessment</h4>
+                                <p class="text-gray-300 text-sm">Age-appropriate assessment and interaction with the child.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-electric-blue text-cosmic flex items-center justify-center font-bold text-sm">4</div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-2">Admission Confirmation</h4>
+                                <p class="text-gray-300 text-sm">Fee payment and admission confirmation upon selection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Required Documents -->
+                <div class="space-y-8">
+                    <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                        <h3 class="font-orbitron text-2xl font-semibold mb-6 text-neon-cyan">Required Documents</h3>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Birth Certificate (Original + 2 copies)</li>
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Previous School Transfer Certificate</li>
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Previous Year Report Card</li>
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Aadhaar Card Copy (Student & Parents)</li>
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Residential Proof</li>
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Passport Size Photographs (6 copies)</li>
+                            <li><i class="fas fa-file-alt text-electric-blue mr-3"></i>Caste Certificate (if applicable)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                        <h3 class="font-orbitron text-xl font-semibold mb-4 text-neon-purple">Important Dates</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-gray-300">Admission Form Available:</span>
+                                <span class="text-electric-blue">February 1, 2024</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-gray-300">Last Date for Submission:</span>
+                                <span class="text-neon-purple">March 15, 2024</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-gray-300">Assessment Period:</span>
+                                <span class="text-neon-cyan">March 20-25, 2024</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-gray-300">Admission Confirmation:</span>
+                                <span class="text-electric-blue">March 30, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="bg-gradient-to-r from-electric-blue to-neon-purple text-white font-semibold px-8 py-4 rounded-full hover-glow transition-all duration-300 inline-block">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-neon-cyan text-glow">School Gallery</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neon-cyan to-neon-purple mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- School building exterior with modern architecture and landscaping -->
+                <div class="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="School building exterior" 
+                         class="w-full h-64 object-cover" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-white mb-2">School Campus</h4>
+                        <p class="text-gray-400 text-sm">Modern infrastructure with eco-friendly design</p>
+                    </div>
+                </div>
+                
+                <!-- Students engaged in interactive learning with tablets and smart board -->
+                <div class="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Students in smart classroom" 
+                         class="w-full h-64 object-cover" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-white mb-2">Smart Classrooms</h4>
+                        <p class="text-gray-400 text-sm">Interactive learning with modern technology</p>
+                    </div>
+                </div>
+                
+                <!-- Science laboratory with students conducting experiments -->
+                <div class="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Science laboratory" 
+                         class="w-full h-64 object-cover" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-white mb-2">Science Laboratory</h4>
+                        <p class="text-gray-400 text-sm">Hands-on learning through experiments</p>
+                    </div>
+                </div>
+                
+                <!-- Students playing sports on outdoor playground -->
+                <div class="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="Students playing sports" 
+                         class="w-full h-64 object-cover" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-white mb-2">Sports Activities</h4>
+                        <p class="text-gray-400 text-sm">Physical fitness and team building</p>
+                    </div>
+                </div>
+                
+                <!-- Library with students reading and studying -->
+                <div class="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                         alt="School library" 
+                         class="w-full h-64 object-cover" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-white mb-2">Digital Library</h4>
+                        <p class="text-gray-400 text-sm">Quiet study spaces and vast collection</p>
+                    </div>
+                </div>
+                
+                <!-- Students participating in cultural activities and events -->
+                <div class="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer gallery-item">
+                    <img src="https://pixabay.com/get/g8fe4a7ac7b6a705d0d56f718e2814e5f4c5fea83a73f3dc480b0f99218e06ed65b211d1c5a5b668acdf822b2ce0396705f4b376c7b9c088b7c2e97e0b2911924_1280.jpg" 
+                         alt="Cultural activities" 
+                         class="w-full h-64 object-cover" />
+                    <div class="p-4">
+                        <h4 class="font-semibold text-white mb-2">Cultural Events</h4>
+                        <p class="text-gray-400 text-sm">Celebrating diversity and creativity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 section-reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-electric-blue text-glow">Get In Touch</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-electric-blue to-neon-cyan mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                        <h3 class="font-orbitron text-2xl font-semibold mb-6 text-neon-cyan">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-map-marker-alt text-2xl text-electric-blue mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-2">Address</h4>
+                                    <p class="text-gray-300">Teliwara, Shahdara, Delhi – 110032</p>
+                                    <p class="text-gray-400 text-sm">(Near Durga Mandir / Teliwara Chowk)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-phone text-2xl text-neon-purple mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-2">Phone</h4>
+                                    <p class="text-gray-300">+91 11 22393033</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-envelope text-2xl text-neon-cyan mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-2">Email</h4>
+                                    <p class="text-gray-300">shahdrateliwara@yahoo.com</p>
+                                    <p class="text-gray-300">1001151hos@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                        <h3 class="font-orbitron text-xl font-semibold mb-4 text-electric-blue">School Hours</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Monday - Friday:</span>
+                                <span class="text-white">8:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Saturday:</span>
+                                <span class="text-white">8:00 AM - 1:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Sunday:</span>
+                                <span class="text-neon-purple">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <h3 class="font-orbitron text-2xl font-semibold mb-6 text-neon-purple">Send Message</h3>
+                    <form class="space-y-6" data-mock="true">
+                        <div>
+                            <label class="block text-gray-300 mb-2">Full Name</label>
+                            <input type="text" class="w-full bg-dark-glass border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:outline-none transition-colors" placeholder="Your Name" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2">Email Address</label>
+                            <input type="email" class="w-full bg-dark-glass border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:outline-none transition-colors" placeholder="your.email@example.com" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2">Phone Number</label>
+                            <input type="tel" class="w-full bg-dark-glass border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:outline-none transition-colors" placeholder="+91 XXXXX XXXXX" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2">Subject</label>
+                            <select class="w-full bg-dark-glass border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:outline-none transition-colors">
+                                <option value="">Select Subject</option>
+                                <option value="admission">Admission Inquiry</option>
+                                <option value="general">General Information</option>
+                                <option value="complaint">Complaint/Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2">Message</label>
+                            <textarea rows="4" class="w-full bg-dark-glass border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-electric-blue focus:outline-none transition-colors resize-none" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-electric-blue to-neon-purple text-white font-semibold py-3 rounded-lg hover-glow transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                    <!-- TODO: Implement form submission functionality -->
+                </div>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="mt-16">
+                <div class="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
+                    <h3 class="font-orbitron text-2xl font-semibold mb-6 text-neon-cyan text-center">Find Us Here</h3>
+                    <div class="aspect-video bg-dark-glass rounded-lg flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-map-marked-alt text-4xl text-electric-blue mb-4"></i>
+                            <p class="text-gray-300">Interactive Map</p>
+                            <p class="text-gray-400 text-sm">Teliwara, Shahdara, Delhi - 110032</p>
+                        </div>
+                        <!-- TODO: Integrate Google Maps API -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-orbitron text-xl font-bold text-electric-blue mb-4">GSST</h3>
+                    <p class="text-gray-400 text-sm mb-4">Shaping Future Leaders with Knowledge & Values since 1966.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300">
+                            <i class="fab fa-facebook-f text-electric-blue"></i>
+                        </a>
+                        <a href="#" class="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300">
+                            <i class="fab fa-twitter text-neon-cyan"></i>
+                        </a>
+                        <a href="#" class="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300">
+                            <i class="fab fa-instagram text-neon-purple"></i>
+                        </a>
+                        <a href="#" class="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300">
+                            <i class="fab fa-linkedin-in text-electric-blue"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-orbitron font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-electric-blue transition-colors">About Us</a></li>
+                        <li><a href="#academics" class="hover:text-electric-blue transition-colors">Academics</a></li>
+                        <li><a href="#facilities" class="hover:text-electric-blue transition-colors">Facilities</a></li>
+                        <li><a href="#admissions" class="hover:text-electric-blue transition-colors">Admissions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-orbitron font-semibold text-white mb-4">Information</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>CBSE Affiliation: 2752106</li>
+                        <li>UDISE Code: 07040123701</li>
+                        <li>DoE ID: 1001151</li>
+                        <li>Est. 1966</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-orbitron font-semibold text-white mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>Teliwara, Shahdara</li>
+                        <li>Delhi - 110032</li>
+                        <li>+91 11 22393033</li>
+                        <li>shahdrateliwara@yahoo.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 Govt. Co-ed. Secondary School, Teliwara. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        (function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Smooth Scrolling for Navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    // Hide mobile menu after clicking
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Active Navigation Link
+            function updateActiveNavLink() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (window.pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Scroll Reveal Animation
+            function revealSections() {
+                const sections = document.querySelectorAll('.section-reveal');
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight - 100) {
+                        section.classList.add('revealed');
+                    }
+                });
+            }
+
+            // Particle Background
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles-container');
+                const particleCount = 50;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // Event Listeners
+            window.addEventListener('scroll', function() {
+                updateActiveNavLink();
+                revealSections();
+            });
+
+            window.addEventListener('load', function() {
+                updateActiveNavLink();
+                revealSections();
+                createParticles();
+            });
+
+            // Gallery Lightbox Effect (Basic)
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // TODO: Implement full lightbox functionality
+                    console.log('Gallery item clicked - implement lightbox');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
