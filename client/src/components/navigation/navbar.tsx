@@ -22,7 +22,7 @@ export function Navbar() {
     <nav className="fixed top-0 w-full z-50 glass-effect" data-testid="navbar">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <div className="font-orbitron font-bold text-xl text-electric-blue text-glow">
+          <div className="font-orbitron font-bold text-xl text-school-blue">
             GSST
           </div>
           
@@ -32,7 +32,7 @@ export function Navbar() {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`nav-link hover:text-electric-blue transition-colors duration-300 capitalize ${
+                className={`nav-link hover:text-school-blue transition-colors duration-300 capitalize ${
                   isActive(section) ? 'active' : ''
                 }`}
                 data-testid={`nav-link-${section}`}
@@ -60,7 +60,7 @@ export function Navbar() {
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`block w-full text-left nav-link hover:text-electric-blue transition-colors duration-300 capitalize ${
+                  className={`block w-full text-left nav-link hover:text-school-blue transition-colors duration-300 capitalize ${
                     isActive(section) ? 'active' : ''
                   }`}
                   data-testid={`mobile-nav-link-${section}`}

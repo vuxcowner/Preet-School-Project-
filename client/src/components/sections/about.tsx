@@ -12,24 +12,24 @@ export function AboutSection() {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-electric-blue text-glow">
+          <h2 className="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-school-blue text-glow">
             About Our School
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-electric-blue to-neon-purple mx-auto"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-peach to-green-tea mx-auto"></div>
         </div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="glass-effect neon-border rounded-2xl p-8 hover-glow transition-all duration-300">
-            <h3 className="font-orbitron text-2xl font-semibold mb-6 text-neon-cyan">Our Heritage</h3>
-            <div className="space-y-4 text-gray-300">
+          <div className="glass-effect school-border rounded-2xl p-8 hover-glow transition-all duration-300">
+            <h3 className="font-orbitron text-2xl font-semibold mb-6 text-green-tea">Our Heritage</h3>
+            <div className="space-y-4 text-muted-foreground">
               <p>
-                Established in <span className="text-electric-blue font-semibold">1966</span> and first opened on{' '}
-                <span className="text-electric-blue font-semibold">April 1, 1991</span>, our school has been a beacon 
+                Established in <span className="text-peach font-semibold">1966</span> and first opened on{' '}
+                <span className="text-peach font-semibold">April 1, 1991</span>, our school has been a beacon 
                 of quality education in Shahdara, Delhi for over five decades.
               </p>
               <p>
                 As a proud CBSE affiliated institution (Affiliation No.{' '}
-                <span className="text-neon-cyan">2752106</span>), we provide comprehensive secondary education 
+                <span className="text-school-blue">2752106</span>), we provide comprehensive secondary education 
                 from classes 6th to 10th in a co-educational environment.
               </p>
               <p>
@@ -69,21 +69,21 @@ export function AboutSection() {
         
         {/* Statistics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-          <div className="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
-            <div className="font-orbitron text-3xl font-bold text-electric-blue mb-2">57+</div>
-            <div className="text-gray-300">Years of Excellence</div>
+          <div className="text-center glass-effect school-border rounded-xl p-6 hover-glow transition-all duration-300">
+            <div className="font-orbitron text-3xl font-bold text-peach mb-2">57+</div>
+            <div className="text-muted-foreground">Years of Excellence</div>
           </div>
-          <div className="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
-            <div className="font-orbitron text-3xl font-bold text-neon-purple mb-2">1000+</div>
-            <div className="text-gray-300">Students Served</div>
+          <div className="text-center glass-effect school-border rounded-xl p-6 hover-glow transition-all duration-300">
+            <div className="font-orbitron text-3xl font-bold text-green-tea mb-2">1000+</div>
+            <div className="text-muted-foreground">Students Served</div>
           </div>
-          <div className="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
-            <div className="font-orbitron text-3xl font-bold text-neon-cyan mb-2">5</div>
-            <div className="text-gray-300">Grade Levels</div>
+          <div className="text-center glass-effect school-border rounded-xl p-6 hover-glow transition-all duration-300">
+            <div className="font-orbitron text-3xl font-bold text-school-blue mb-2">5</div>
+            <div className="text-muted-foreground">Grade Levels</div>
           </div>
-          <div className="text-center glass-effect neon-border rounded-xl p-6 hover-glow transition-all duration-300">
-            <div className="font-orbitron text-3xl font-bold text-electric-blue mb-2">100%</div>
-            <div className="text-gray-300">CBSE Curriculum</div>
+          <div className="text-center glass-effect school-border rounded-xl p-6 hover-glow transition-all duration-300">
+            <div className="font-orbitron text-3xl font-bold text-peach mb-2">100%</div>
+            <div className="text-muted-foreground">CBSE Curriculum</div>
           </div>
         </div>
       </div>

@@ -13,8 +13,8 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-orbitron text-xl font-bold text-electric-blue mb-4">GSST</h3>
-            <p className="text-gray-400 text-sm mb-4">
+            <h3 className="font-orbitron text-xl font-bold text-school-blue mb-4">GSST</h3>
+            <p className="text-muted-foreground text-sm mb-4">
               Shaping Future Leaders with Knowledge & Values since 1966.
             </p>
             <div className="flex space-x-4">
@@ -23,39 +23,39 @@ export function Footer() {
                 className="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300"
                 data-testid="social-facebook"
               >
-                <Facebook className="w-4 h-4 text-electric-blue" />
+                <Facebook className="w-4 h-4 text-school-blue" />
               </a>
               <a 
                 href="#" 
                 className="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300"
                 data-testid="social-twitter"
               >
-                <Twitter className="w-4 h-4 text-neon-cyan" />
+                <Twitter className="w-4 h-4 text-green-tea" />
               </a>
               <a 
                 href="#" 
                 className="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300"
                 data-testid="social-instagram"
               >
-                <Instagram className="w-4 h-4 text-neon-purple" />
+                <Instagram className="w-4 h-4 text-peach" />
               </a>
               <a 
                 href="#" 
                 className="glass-effect w-10 h-10 rounded-full flex items-center justify-center hover-glow transition-all duration-300"
                 data-testid="social-linkedin"
               >
-                <Linkedin className="w-4 h-4 text-electric-blue" />
+                <Linkedin className="w-4 h-4 text-school-blue" />
               </a>
             </div>
           </div>
           
           <div>
             <h4 className="font-orbitron font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <ul className="space-y-2 text-muted-foreground text-sm">
               <li>
                 <button 
                   onClick={() => scrollToSection('about')}
-                  className="hover:text-electric-blue transition-colors"
+                  className="hover:text-school-blue transition-colors"
                   data-testid="footer-link-about"
                 >
                   About Us
@@ -64,7 +64,7 @@ export function Footer() {
               <li>
                 <button 
                   onClick={() => scrollToSection('academics')}
-                  className="hover:text-electric-blue transition-colors"
+                  className="hover:text-school-blue transition-colors"
                   data-testid="footer-link-academics"
                 >
                   Academics
@@ -73,7 +73,7 @@ export function Footer() {
               <li>
                 <button 
                   onClick={() => scrollToSection('facilities')}
-                  className="hover:text-electric-blue transition-colors"
+                  className="hover:text-school-blue transition-colors"
                   data-testid="footer-link-facilities"
                 >
                   Facilities
@@ -82,7 +82,7 @@ export function Footer() {
               <li>
                 <button 
                   onClick={() => scrollToSection('admissions')}
-                  className="hover:text-electric-blue transition-colors"
+                  className="hover:text-school-blue transition-colors"
                   data-testid="footer-link-admissions"
                 >
                   Admissions
@@ -93,7 +93,7 @@ export function Footer() {
           
           <div>
             <h4 className="font-orbitron font-semibold text-white mb-4">Information</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <ul className="space-y-2 text-muted-foreground text-sm">
               <li>CBSE Affiliation: 2752106</li>
               <li>UDISE Code: 07040123701</li>
               <li>DoE ID: 1001151</li>
@@ -103,7 +103,7 @@ export function Footer() {
           
           <div>
             <h4 className="font-orbitron font-semibold text-white mb-4">Contact Info</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <ul className="space-y-2 text-muted-foreground text-sm">
               <li>Teliwara, Shahdara</li>
               <li>Delhi - 110032</li>
               <li>+91 11 22393033</li>
@@ -113,7 +113,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-muted-foreground text-sm">
             © 2024 Govt. Co-ed. Secondary School, Teliwara. All rights reserved.
           </p>
         </div>

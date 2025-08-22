@@ -4,34 +4,35 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(240, 30%, 4%);
-  --foreground: hsl(0, 0%, 100%);
-  --card: hsl(240, 25%, 8%);
-  --card-foreground: hsl(0, 0%, 95%);
-  --popover: hsl(240, 25%, 8%);
-  --popover-foreground: hsl(0, 0%, 95%);
-  --primary: hsl(190, 100%, 50%);
-  --primary-foreground: hsl(240, 30%, 4%);
-  --secondary: hsl(280, 75%, 60%);
-  --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(240, 20%, 15%);
-  --muted-foreground: hsl(240, 5%, 70%);
-  --accent: hsl(190, 100%, 70%);
-  --accent-foreground: hsl(240, 30%, 4%);
+  --background: hsl(45, 25%, 97%);
+  --foreground: hsl(200, 15%, 20%);
+  --card: hsl(45, 35%, 95%);
+  --card-foreground: hsl(200, 15%, 25%);
+  --popover: hsl(45, 35%, 95%);
+  --popover-foreground: hsl(200, 15%, 25%);
+  --primary: hsl(25, 85%, 75%);
+  --primary-foreground: hsl(200, 15%, 20%);
+  --secondary: hsl(80, 35%, 65%);
+  --secondary-foreground: hsl(200, 15%, 20%);
+  --muted: hsl(45, 20%, 85%);
+  --muted-foreground: hsl(200, 10%, 45%);
+  --accent: hsl(25, 85%, 80%);
+  --accent-foreground: hsl(200, 15%, 20%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(240, 20%, 20%);
-  --input: hsl(240, 20%, 15%);
-  --ring: hsl(190, 100%, 50%);
+  --border: hsl(45, 25%, 80%);
+  --input: hsl(45, 35%, 92%);
+  --ring: hsl(25, 85%, 75%);
   --radius: 0.75rem;
   
-  /* Custom colors */
-  --cosmic: hsl(240, 50%, 6%);
-  --electric-blue: hsl(190, 100%, 50%);
-  --neon-purple: hsl(280, 75%, 60%);
-  --neon-cyan: hsl(180, 100%, 50%);
-  --glass: hsla(0, 0%, 100%, 0.1);
-  --dark-glass: hsla(0, 0%, 0%, 0.2);
+  /* Custom school colors */
+  --peach: hsl(25, 85%, 75%);
+  --green-tea: hsl(80, 35%, 65%);
+  --warm-white: hsl(45, 35%, 98%);
+  --school-blue: hsl(210, 60%, 45%);
+  --golden: hsl(45, 80%, 60%);
+  --glass: hsla(25, 85%, 75%, 0.15);
+  --dark-glass: hsla(25, 30%, 30%, 0.1);
   
   /* Fonts */
   --font-sans: 'Inter', sans-serif;
@@ -39,25 +40,25 @@
 }
 
 .dark {
-  --background: hsl(240, 30%, 4%);
-  --foreground: hsl(0, 0%, 100%);
-  --card: hsl(240, 25%, 8%);
-  --card-foreground: hsl(0, 0%, 95%);
-  --popover: hsl(240, 25%, 8%);
-  --popover-foreground: hsl(0, 0%, 95%);
-  --primary: hsl(190, 100%, 50%);
-  --primary-foreground: hsl(240, 30%, 4%);
-  --secondary: hsl(280, 75%, 60%);
-  --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(240, 20%, 15%);
-  --muted-foreground: hsl(240, 5%, 70%);
-  --accent: hsl(190, 100%, 70%);
-  --accent-foreground: hsl(240, 30%, 4%);
+  --background: hsl(200, 20%, 12%);
+  --foreground: hsl(45, 25%, 95%);
+  --card: hsl(200, 20%, 15%);
+  --card-foreground: hsl(45, 25%, 90%);
+  --popover: hsl(200, 20%, 15%);
+  --popover-foreground: hsl(45, 25%, 90%);
+  --primary: hsl(25, 85%, 75%);
+  --primary-foreground: hsl(200, 20%, 12%);
+  --secondary: hsl(80, 35%, 65%);
+  --secondary-foreground: hsl(200, 20%, 12%);
+  --muted: hsl(200, 15%, 25%);
+  --muted-foreground: hsl(45, 15%, 65%);
+  --accent: hsl(25, 85%, 80%);
+  --accent-foreground: hsl(200, 20%, 12%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(240, 20%, 20%);
-  --input: hsl(240, 20%, 15%);
-  --ring: hsl(190, 100%, 50%);
+  --border: hsl(200, 15%, 25%);
+  --input: hsl(200, 15%, 20%);
+  --ring: hsl(25, 85%, 75%);
 }
 
 @layer base {
@@ -71,7 +72,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background: linear-gradient(135deg, hsl(240, 50%, 6%) 0%, hsl(280, 40%, 10%) 50%, hsl(200, 40%, 12%) 100%);
+    background: linear-gradient(135deg, hsl(45, 35%, 98%) 0%, hsl(80, 25%, 95%) 30%, hsl(25, 40%, 96%) 70%, hsl(210, 15%, 94%) 100%);
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -81,12 +82,12 @@
   .glass-effect {
     background: var(--glass);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid hsla(25, 85%, 75%, 0.3);
   }
   
-  .neon-border {
-    border: 1px solid var(--electric-blue);
-    box-shadow: 0 0 10px hsla(190, 100%, 50%, 0.3), inset 0 0 10px hsla(190, 100%, 50%, 0.1);
+  .school-border {
+    border: 2px solid var(--peach);
+    box-shadow: 0 4px 15px hsla(25, 85%, 75%, 0.2), inset 0 1px 0 hsla(25, 85%, 90%, 0.3);
   }
   
   .text-glow {
@@ -98,8 +99,8 @@
   }
   
   .hover-glow:hover {
-    box-shadow: 0 0 20px hsla(190, 100%, 50%, 0.5);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsla(25, 85%, 75%, 0.3);
+    transform: translateY(-3px);
   }
   
   .section-reveal {
@@ -115,24 +116,26 @@
   
   .hero-bg {
     background: 
-      radial-gradient(circle at 20% 50%, hsla(280, 75%, 60%, 0.3) 0%, transparent 70%),
-      radial-gradient(circle at 80% 20%, hsla(190, 100%, 50%, 0.3) 0%, transparent 70%),
-      radial-gradient(circle at 40% 40%, hsla(180, 100%, 50%, 0.2) 0%, transparent 70%),
-      linear-gradient(135deg, hsl(240, 50%, 6%) 0%, hsl(280, 40%, 10%) 100%);
+      radial-gradient(circle at 20% 50%, hsla(25, 85%, 75%, 0.2) 0%, transparent 70%),
+      radial-gradient(circle at 80% 20%, hsla(80, 35%, 65%, 0.2) 0%, transparent 70%),
+      radial-gradient(circle at 40% 40%, hsla(210, 60%, 45%, 0.1) 0%, transparent 70%),
+      linear-gradient(135deg, hsl(45, 35%, 98%) 0%, hsl(80, 25%, 95%) 50%, hsl(25, 40%, 96%) 100%);
   }
   
   .particle {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: var(--electric-blue);
+    width: 3px;
+    height: 3px;
+    background: var(--peach);
     border-radius: 50%;
-    animation: particle 20s linear infinite;
+    animation: particle 25s linear infinite;
+    opacity: 0.6;
   }
   
   .nav-link.active {
-    color: var(--electric-blue);
-    text-shadow: 0 0 10px var(--electric-blue);
+    color: var(--school-blue);
+    font-weight: 600;
+    border-bottom: 2px solid var(--peach);
   }
 }
 
@@ -164,8 +167,8 @@
 }
 
 @keyframes glow {
-  0% { text-shadow: 0 0 5px var(--electric-blue), 0 0 10px var(--electric-blue), 0 0 15px var(--electric-blue); }
-  100% { text-shadow: 0 0 10px var(--electric-blue), 0 0 20px var(--electric-blue), 0 0 30px var(--electric-blue); }
+  0% { text-shadow: 0 2px 8px var(--peach), 0 0 15px hsla(25, 85%, 75%, 0.3); }
+  100% { text-shadow: 0 4px 12px var(--peach), 0 0 20px hsla(25, 85%, 75%, 0.5); }
 }
 
 @keyframes particle {

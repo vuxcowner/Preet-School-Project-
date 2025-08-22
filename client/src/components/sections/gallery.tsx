@@ -73,7 +73,7 @@ export function GallerySection() {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-neon-cyan text-glow">
+          <h2 className="font-orbitron text-4xl md:text-5xl font-bold mb-4 text-green-tea text-glow">
             School Gallery
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-neon-cyan to-neon-purple mx-auto"></div>
@@ -83,7 +83,7 @@ export function GallerySection() {
           {galleryImages.map((image, index) => (
             <div 
               key={index}
-              className="glass-effect neon-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer"
+              className="glass-effect school-border rounded-xl overflow-hidden hover-glow transition-all duration-300 cursor-pointer"
               onClick={() => openLightbox(index)}
               data-testid={`gallery-item-${index}`}
             >
@@ -94,7 +94,7 @@ export function GallerySection() {
               />
               <div className="p-4">
                 <h4 className="font-semibold text-white mb-2">{image.title}</h4>
-                <p className="text-gray-400 text-sm">{image.description}</p>
+                <p className="text-muted-foreground text-sm">{image.description}</p>
               </div>
             </div>
           ))}
