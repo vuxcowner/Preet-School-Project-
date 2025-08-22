@@ -172,6 +172,7 @@ export function ContactSection() {
                       <FormControl>
                         <Input 
                           {...field} 
+                          value={field.value || ''}
                           type="tel"
                           placeholder="+91 XXXXX XXXXX" 
                           className="bg-dark-glass border-gray-600 text-white focus:border-electric-blue"
